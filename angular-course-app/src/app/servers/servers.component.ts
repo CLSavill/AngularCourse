@@ -14,6 +14,8 @@ export class ServersComponent {
   allowNewServer = false; // Used in property binding via [attribute]="propertyName" syntax.
   serverCreationStatus = 'No new server was created.';
   serverName = 'Default';
+  serverCreated = false;
+  servers = ['TestServer1', 'TestServer2'];
 
   constructor() {
     setTimeout(() => {
@@ -23,6 +25,8 @@ export class ServersComponent {
 
   onCreateServer() { // Used in event binding via (eventName)="functionName" syntax.
     this.serverCreationStatus = 'Server ' + this.serverName + ' was created.';
+    this.servers.push(this.serverName);
+    this.serverCreated = true;
   }
 
   onUpdateServerName(event: Event) {

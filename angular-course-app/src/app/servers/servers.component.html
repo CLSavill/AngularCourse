@@ -2,17 +2,26 @@
 <!-- <input
 type="text"
 class="form-control"
-(input)="onUpdateServerName($event)"> --> <!-- This does not enable two-way data binding, see below example for that.-->
-<input
-type="text"
-class="form-control"
-[(ngModel)]="serverName"> <!-- Shortcut for the above syntax and also enables two-way data binding meaning if the serverName is altered elsewhere the value here will change too.-->
+(input)="onUpdateServerName($event)"> -->
+<!-- This does not enable two-way data binding, see below example for that.-->
+<input type="text" class="form-control" [(ngModel)]="serverName" />
+<!-- Shortcut for the above syntax and also enables two-way data binding meaning if the serverName is altered elsewhere the value here will change too.-->
 <p>{{ serverName }}</p>
-<button class="btn btn-primary" [disabled]="!allowNewServer" (click)="onCreateServer()">
+<button
+  class="btn btn-primary"
+  [disabled]="!allowNewServer"
+  (click)="onCreateServer()"
+>
   Add Server
 </button>
-<p>
+<!-- <p>
   {{ serverCreationStatus }}
+</p> -->
+<p *ngIf="serverCreated; else noServer">
+  Server was created, server name is {{ serverName }}.
 </p>
-<app-server></app-server>
-<app-server></app-server>
+<!-- The '*' in *ngIf is required to signify that the ngIf directive is a structural directive that will affect the DOM's structure (either adding or removing HTML elements).-->
+<ng-template #noServer> <!-- '#' is a local variable/marker referenced in the *ngIf structural directive above.-->
+  <p>No server was created.</p>
+</ng-template>
+<app-server *ngFor="let server of servers"></app-server> <!-- The *ngFor structural directive enumerates over the servers property and in this case load a new app-server component per server in the servers array.-->

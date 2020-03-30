@@ -5,8 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   //styleUrls: ['./app.component.css'] // Using an external file is preferred.
   styles: [`
-    h1 {
-      color: teal
+    .online {
+      color: white;
     }
   `]
 })
