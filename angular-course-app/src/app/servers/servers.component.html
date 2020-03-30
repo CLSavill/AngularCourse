@@ -1,2 +1,18 @@
+<label>Server Name</label>
+<!-- <input
+type="text"
+class="form-control"
+(input)="onUpdateServerName($event)"> --> <!-- This does not enable two-way data binding, see below example for that.-->
+<input
+type="text"
+class="form-control"
+[(ngModel)]="serverName"> <!-- Shortcut for the above syntax and also enables two-way data binding meaning if the serverName is altered elsewhere the value here will change too.-->
+<p>{{ serverName }}</p>
+<button class="btn btn-primary" [disabled]="!allowNewServer" (click)="onCreateServer()">
+  Add Server
+</button>
+<p>
+  {{ serverCreationStatus }}
+</p>
 <app-server></app-server>
 <app-server></app-server>
